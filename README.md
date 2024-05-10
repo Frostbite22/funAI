@@ -4,6 +4,12 @@
 ```
 pip install groq
 ```
+
+### Install DSPy
+```
+pip install git+https://github.com/stanfordnlp/dspy.git
+```
+
 ### Set groq API 
 On Linux
 ```
