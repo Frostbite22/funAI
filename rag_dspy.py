@@ -35,7 +35,7 @@ teleprompter = BootstrapFewShot(metric=validate_context_and_answer)
 compiled_rag = teleprompter.compile(RAG(), trainset=trainset)
 
 # Save the compiled RAG program.
-# compiled_rag.save('rag_dspy_example/compiled.json')
+compiled_rag.save('compiled_rag.json')
 
 
 data_schema = """

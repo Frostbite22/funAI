@@ -3,8 +3,6 @@ from rag import RAG
 import dspy
 import os
 
-# Ask any question you like to this simple RAG program.
-user_story = "As a user, I want to create an employee"
 
 data_schema = """
 CREATE TABLE roles (
@@ -80,13 +78,14 @@ CREATE TABLE timesheets (
 
 );
 """
-
+# Ask any question you like to this simple RAG program.
 question = "what are the functions and their parameters ?"
 
+user_story = "As a user, I want to find timesheets by date worked"
 
 
 # Language model
-llama3 = dspy.GROQ(model='llama3-8b-8192', api_key=os.environ.get("GROQ_API_KEY"))
+llama3 = dspy.GROQ(model='llama3-70b-8192', api_key=os.environ.get("GROQ_API_KEY"))
 dspy.configure(lm=llama3)
 
 #Retrieval model
@@ -95,7 +94,7 @@ dspy.configure(lm=llama3,rm=colbertv2_wiki17_abstracts)
 
 
 rag = RAG()
-rag.load('compiled.json')
+rag.load('llama3_70b_v0.json')
 
 pred = rag(user_story=user_story,data_schema=data_schema,question=question)
 

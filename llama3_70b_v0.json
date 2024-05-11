@@ -1,0 +1,168 @@
+{
+  "retrieve": {
+    "k": 3
+  },
+  "generate_answer": {
+    "lm": null,
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "dspy_uuid": "3752e860-670e-4bca-9a22-00ac706650e9",
+        "context": [
+          "Function type | In computer science, a function type (or arrow type or exponential) is the type of a variable or parameter to which a function has or can be assigned, or an argument or result type of a higher-order function taking or returning a function.",
+          "Parameter (disambiguation) | A parameter is a quantity which changes characteristics of a system or a function. The term is used in this way in many mathematical sciences.",
+          "Named parameter | In computer programming, named parameters, pass-by-name, or keyword arguments refer to a computer language's support for function calls that clearly state the name of each parameter within the function call."
+        ],
+        "question": "what are the functions and their parameters ?",
+        "user_story": "As a user, I want to update the first and the last name of an employee",
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "rationale": "update_employee(employee_id,first_name,last_name)",
+        "answer": "update_employee(employee_id,first_name,last_name)"
+      },
+      {
+        "augmented": true,
+        "dspy_uuid": "e7eedfd9-b7eb-4a2e-8c89-714dd5f3f9d3",
+        "context": [
+          "Function type | In computer science, a function type (or arrow type or exponential) is the type of a variable or parameter to which a function has or can be assigned, or an argument or result type of a higher-order function taking or returning a function.",
+          "Parameter (disambiguation) | A parameter is a quantity which changes characteristics of a system or a function. The term is used in this way in many mathematical sciences.",
+          "Named parameter | In computer programming, named parameters, pass-by-name, or keyword arguments refer to a computer language's support for function calls that clearly state the name of each parameter within the function call."
+        ],
+        "question": "what are the functions and their parameters ?",
+        "user_story": "As a user, I want to find a role ",
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "rationale": "Answer: get_role(role_id)",
+        "answer": "get_role(role_id)"
+      },
+      {
+        "augmented": true,
+        "dspy_uuid": "a936e665-ff45-4b2b-bfd9-9a2ffb82d9f0",
+        "context": [
+          "Function type | In computer science, a function type (or arrow type or exponential) is the type of a variable or parameter to which a function has or can be assigned, or an argument or result type of a higher-order function taking or returning a function.",
+          "Parameter (disambiguation) | A parameter is a quantity which changes characteristics of a system or a function. The term is used in this way in many mathematical sciences.",
+          "Named parameter | In computer programming, named parameters, pass-by-name, or keyword arguments refer to a computer language's support for function calls that clearly state the name of each parameter within the function call."
+        ],
+        "question": "what are the functions and their parameters ?",
+        "user_story": "As an admin, I want to delete an employee",
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "rationale": "delete_employee(employee_id)",
+        "answer": "delete_employee(employee_id)"
+      },
+      {
+        "augmented": true,
+        "dspy_uuid": "2e930671-f1ab-449c-aa75-cf045d4e0e22",
+        "context": [
+          "Function type | In computer science, a function type (or arrow type or exponential) is the type of a variable or parameter to which a function has or can be assigned, or an argument or result type of a higher-order function taking or returning a function.",
+          "Parameter (disambiguation) | A parameter is a quantity which changes characteristics of a system or a function. The term is used in this way in many mathematical sciences.",
+          "Named parameter | In computer programming, named parameters, pass-by-name, or keyword arguments refer to a computer language's support for function calls that clearly state the name of each parameter within the function call."
+        ],
+        "question": "what are the functions and their parameters ?",
+        "user_story": "As a user, I want to get all roles",
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "rationale": "Answer: get_roles()",
+        "answer": "get_roles()"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As a user, I want to find an employee ",
+        "question": "what are the functions and their parameters ?",
+        "answer": "get_employee(employee_id)",
+        "dspy_uuid": "e6567701-2b4a-453d-b616-1495c281d8a0",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As a user, I want to get  employees by their first name and their last name",
+        "question": "what are the functions and their parameters ?",
+        "answer": "get_employees(last_name,first_name)",
+        "dspy_uuid": "e116496d-2e06-4582-b457-a2d93bbae36b",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As an admin, I want to update an employee's data",
+        "question": "what are the functions and their parameters ?",
+        "answer": "update_employee(employee_id,first_name,last_name,salary, department_id, role_id)",
+        "dspy_uuid": "99c48c50-2c05-4d6a-b848-09cc9663b233",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As an admin, I want to delete roles by their titles",
+        "question": "what are the functions and their parameters ?",
+        "answer": "delete_roles(title)",
+        "dspy_uuid": "94287ede-ce6d-4b60-93f7-d328929dd55b",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As a user, I want to get all employees",
+        "question": "what are the functions and their parameters ?",
+        "answer": "get_employees()",
+        "dspy_uuid": "fe7a58e7-8b30-46ab-8c36-347cd850d215",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As a user, I want to get employees by their role title",
+        "question": "what are the functions and their parameters ?",
+        "answer": "get_employees(title)",
+        "dspy_uuid": "535b8b35-2f55-4058-b7cd-19733b964998",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As a user, I want to get  roles by their titles",
+        "question": "what are the functions and their parameters ?",
+        "answer": "get_roles(title)",
+        "dspy_uuid": "4a5246ba-14e8-4f17-8041-b81c39ff46f9",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As an admin, I want to delete  employees by their first name",
+        "question": "what are the functions and their parameters ?",
+        "answer": "delete_employees(first_name)",
+        "dspy_uuid": "ed37b0f6-5c0e-4a5f-b6ff-652c578a5193",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As an admin, I want to delete a role",
+        "question": "what are the functions and their parameters ?",
+        "answer": "delete_role(role_id)",
+        "dspy_uuid": "4938f693-8504-4d34-828c-51e1ffaf87ce",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As a user, I want to create a role",
+        "question": "what are the functions and their parameters ?",
+        "answer": "create_role(title)",
+        "dspy_uuid": "769a6ba5-f0e8-4325-abc0-06108598fb35",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As a user, I want to update the title of a role",
+        "question": "what are the functions and their parameters ?",
+        "answer": "update_role(role_id,title)",
+        "dspy_uuid": "145b3e58-cc68-4a09-831c-d9f8cdcf1c80",
+        "dspy_split": "train"
+      },
+      {
+        "data_schema": "CREATE TABLE roles (\n\n  role_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  title VARCHAR(100) NOT NULL\n\n);\n \nCREATE TABLE employees (\n\n  employee_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  first_name VARCHAR(100) NOT NULL,\n\n  last_name VARCHAR(100) NOT NULL,\n  \n  salary INT, \n\n  department_id INT,\n\n  role_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id),\n\n  FOREIGN KEY (role_id) REFERENCES roles(role_id)\n\n);\n \nCREATE TABLE projects (\n\n  project_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  project_name VARCHAR(255) NOT NULL,\n\n  start_date DATE,\n\n  end_date DATE,\n\n  department_id INT,\n\n  FOREIGN KEY (department_id) REFERENCES departments(department_id)\n\n);\n \nCREATE TABLE departments (\n\n  department_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  name VARCHAR(100) NOT NULL,\n\n  location VARCHAR(255)\n\n);\n \n \nCREATE TABLE timesheets (\n\n  timesheet_id INT PRIMARY KEY AUTO_INCREMENT,\n\n  employee_id INT NOT NULL,\n\n  project_id INT NOT NULL,\n\n  date_worked DATE NOT NULL,\n\n  hours_worked DECIMAL(5, 2) NOT NULL,\n\n  FOREIGN KEY (employee_id) REFERENCES employees(employee_id),\n\n  FOREIGN KEY (project_id) REFERENCES projects(project_id)\n\n);",
+        "user_story": "As an admin, I want to update a role's data",
+        "question": "what are the functions and their parameters ?",
+        "answer": "update_role(role_id,title)",
+        "dspy_uuid": "ed1e46b5-7ef0-4d41-9789-3618d11b45bf",
+        "dspy_split": "train"
+      }
+    ],
+    "signature_instructions": "Answer questions with exact short answers.",
+    "signature_prefix": "Answer:",
+    "extended_signature_instructions": "Answer questions with exact short answers.",
+    "extended_signature_prefix": "Answer:"
+  }
+}
