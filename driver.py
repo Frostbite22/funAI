@@ -1,4 +1,7 @@
 #Loading:
+from custom_data import CSVDataset
+from dspy.evaluate.evaluate import Evaluate
+
 from rag import RAG
 import dspy
 import os
@@ -98,10 +101,31 @@ rag.load('llama3_70b_v0.json')
 
 pred = rag(user_story=user_story,data_schema=data_schema,question=question)
 
-
 # Print the contexts and the answer.
 print(f"User Story: {pred}")
 print(f"Predicted Answer: {pred.answer}")
 print(f"Retrieved Contexts (truncated): {[c[:200] + '...' for c in pred.context]}")
+
+
+### Evaluate the model on a custom dataset : timedout 
+# Loading the data
+# dataset = CSVDataset('rag_data.xlsx')
+
+# trainset = [x.with_inputs('data_schema','user_story','question') for x in dataset.train]
+# devset = [x.with_inputs('data_schema','user_story','question') for x in dataset.dev]
+
+
+# Set up the `evaluate_on_hotpotqa` function. We'll use this many times below.
+# evaluate_on_custom_dataset = Evaluate(devset=devset, num_threads=1, display_progress=False, display_table=5)
+
+# Evaluate the `compiled_rag` program with the `answer_exact_match` metric.
+
+# def validate(example, pred, trace=None):
+#     return example.answer.lower() == pred.answer.lower()
+
+# print(evaluate_on_custom_dataset(rag, metric=validate))
+
+
+
 
 
