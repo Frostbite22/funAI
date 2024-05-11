@@ -4,7 +4,7 @@ import dspy
 import os
 
 # Ask any question you like to this simple RAG program.
-user_story = "As a user, I want to create a project"
+user_story = "As a user, I want to create an employee"
 
 data_schema = """
 CREATE TABLE roles (

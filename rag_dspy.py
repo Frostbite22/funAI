@@ -7,7 +7,7 @@ from dspy.teleprompt import BootstrapFewShot
 
 
 # Language model
-llama3 = dspy.GROQ(model='llama3-8b-8192', api_key=os.environ.get("GROQ_API_KEY"))
+llama3 = dspy.GROQ(model='llama3-70b-8192', api_key=os.environ.get("GROQ_API_KEY"))
 dspy.configure(lm=llama3)
 
 #Retrieval model
@@ -15,7 +15,7 @@ colbertv2_wiki17_abstracts = dspy.ColBERTv2(url="http://20.102.90.50:2017/wiki17
 dspy.configure(lm=llama3,rm=colbertv2_wiki17_abstracts)
 
 # Loading the data
-dataset = CSVDataset('rag_dspy_example/rag_data.xlsx')
+dataset = CSVDataset('rag_data.xlsx')
 
 trainset = [x.with_inputs('data_schema','user_story','question') for x in dataset.train]
 devset = [x.with_inputs('data_schema','user_story','question') for x in dataset.dev]
@@ -35,10 +35,8 @@ teleprompter = BootstrapFewShot(metric=validate_context_and_answer)
 compiled_rag = teleprompter.compile(RAG(), trainset=trainset)
 
 # Save the compiled RAG program.
-compiled_rag.save('rag_dspy_example/compiled.json')
+# compiled_rag.save('rag_dspy_example/compiled.json')
 
-# Ask any question you like to this simple RAG program.
-user_story = "As a user, I want to create a timesheet"
 
 data_schema = """
 CREATE TABLE roles (
@@ -115,7 +113,10 @@ CREATE TABLE timesheets (
 );
 """
 
+# Ask any question you like to this simple RAG program.
 question = "what are the functions and their parameters ?"
+
+user_story = "As a user, I want to update an employee by his salary"
 
 # Get the prediction. This contains `pred.context` and `pred.answer`.
 pred = compiled_rag(user_story,data_schema,question)
@@ -124,3 +125,8 @@ pred = compiled_rag(user_story,data_schema,question)
 print(f"User Story: {pred}")
 print(f"Predicted Answer: {pred.answer}")
 print(f"Retrieved Contexts (truncated): {[c[:200] + '...' for c in pred.context]}")
+
+# inspect the last prompt for the LM
+llama3.inspect_history(n=1)
+
+
