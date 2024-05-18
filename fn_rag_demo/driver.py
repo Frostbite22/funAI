@@ -1,41 +1,10 @@
-import groq
+#Loading:
+from custom_data import CSVDataset
+from dspy.evaluate.evaluate import Evaluate
+
+from rag import RAG
 import dspy
 import os
-from custom_data import CSVDataset
-from rag import RAG
-from dspy.teleprompt import BootstrapFewShot
-
-
-# Language model
-llama3 = dspy.GROQ(model='llama3-70b-8192', api_key=os.environ.get("GROQ_API_KEY"))
-dspy.configure(lm=llama3)
-
-#Retrieval model
-colbertv2_wiki17_abstracts = dspy.ColBERTv2(url="http://20.102.90.50:2017/wiki17_abstracts")
-dspy.configure(lm=llama3,rm=colbertv2_wiki17_abstracts)
-
-# Loading the data
-dataset = CSVDataset('rag_data.xlsx')
-
-trainset = [x.with_inputs('data_schema','user_story','question') for x in dataset.train]
-devset = [x.with_inputs('data_schema','user_story','question') for x in dataset.dev]
-
-
-
-# Validation logic: check that the predicted answer is correct.
-# Also check that the retrieved context does actually contain that answer.
-def validate_context_and_answer(example, pred, trace=None):
-    return example.answer.lower() == pred.answer.lower()
-
-
-# Set up a basic teleprompter, which will compile our RAG program.
-teleprompter = BootstrapFewShot(metric=validate_context_and_answer)
-
-# Compile!
-compiled_rag = teleprompter.compile(RAG(), trainset=trainset)
-
-# Save the compiled RAG program.
-compiled_rag.save('compiled_rag.json')
 
 
 data_schema = """
@@ -112,21 +81,51 @@ CREATE TABLE timesheets (
 
 );
 """
-
 # Ask any question you like to this simple RAG program.
 question = "what are the functions and their parameters ?"
 
-user_story = "As a user, I want to update an employee by his salary"
+user_story = "As a user, I want to get employees by department name "
 
-# Get the prediction. This contains `pred.context` and `pred.answer`.
-pred = compiled_rag(user_story,data_schema,question)
+
+# Language model
+llama3 = dspy.GROQ(model='llama3-70b-8192', api_key=os.environ.get("GROQ_API_KEY"))
+dspy.configure(lm=llama3)
+
+#Retrieval model
+colbertv2_wiki17_abstracts = dspy.ColBERTv2(url="http://20.102.90.50:2017/wiki17_abstracts")
+dspy.configure(lm=llama3,rm=colbertv2_wiki17_abstracts)
+
+
+rag = RAG()
+rag.load('fn_rag_demo/llama3_70b_v0.json')
+
+pred = rag(user_story=user_story,data_schema=data_schema,question=question)
 
 # Print the contexts and the answer.
 print(f"User Story: {pred}")
 print(f"Predicted Answer: {pred.answer}")
 print(f"Retrieved Contexts (truncated): {[c[:200] + '...' for c in pred.context]}")
 
-# inspect the last prompt for the LM
-llama3.inspect_history(n=1)
+
+### Evaluate the model on a custom dataset : timedout 
+# Loading the data
+# dataset = CSVDataset('rag_data.xlsx')
+
+# trainset = [x.with_inputs('data_schema','user_story','question') for x in dataset.train]
+# devset = [x.with_inputs('data_schema','user_story','question') for x in dataset.dev]
+
+
+# Set up the `evaluate_on_hotpotqa` function. We'll use this many times below.
+# evaluate_on_custom_dataset = Evaluate(devset=devset, num_threads=1, display_progress=False, display_table=5)
+
+# Evaluate the `compiled_rag` program with the `answer_exact_match` metric.
+
+# def validate(example, pred, trace=None):
+#     return example.answer.lower() == pred.answer.lower()
+
+# print(evaluate_on_custom_dataset(rag, metric=validate))
+
+
+
 
 
