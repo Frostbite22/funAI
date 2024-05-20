@@ -2,7 +2,7 @@ import groq
 import dspy
 import os
 from custom_data import CSVDataset
-from rag import RAG
+from rag import RAGFunc
 from dspy.teleprompt import BootstrapFewShot
 
 
@@ -22,6 +22,7 @@ devset = [x.with_inputs('data_schema','user_story','question') for x in dataset.
 
 
 
+
 # Validation logic: check that the predicted answer is correct.
 # Also check that the retrieved context does actually contain that answer.
 def validate_context_and_answer(example, pred, trace=None):
@@ -32,7 +33,7 @@ def validate_context_and_answer(example, pred, trace=None):
 teleprompter = BootstrapFewShot(metric=validate_context_and_answer)
 
 # Compile!
-compiled_rag = teleprompter.compile(RAG(), trainset=trainset)
+compiled_rag = teleprompter.compile(RAGFunc(), trainset=trainset)
 
 # Save the compiled RAG program.
 compiled_rag.save('compiled_rag.json')
@@ -118,8 +119,22 @@ question = "what are the functions and their parameters ?"
 
 user_story = "As a user, I want to update an employee by his salary"
 
+
+## uncompiled
+uncompiled = RAGFunc()
+
+pred_uncompiled = uncompiled(user_story,data_schema,question)
+
+# Print the contexts and the answer.
+print(f"User Story: {pred_uncompiled}")
+print(f"Predicted uncompiled Answer: {pred_uncompiled.answer}")
+print(f"Retrieved Contexts (truncated): {[c[:200] + '...' for c in pred_uncompiled.context]}")
+
+
+
 # Get the prediction. This contains `pred.context` and `pred.answer`.
 pred = compiled_rag(user_story,data_schema,question)
+
 
 # Print the contexts and the answer.
 print(f"User Story: {pred}")

@@ -2,7 +2,7 @@ import dspy
 
 from signature import GenerateAnswer
 
-class RAG(dspy.Module):
+class RAGFunc(dspy.Module):
     def __init__(self, num_passages=3):
         super().__init__()
 
