@@ -1,6 +1,6 @@
 import dspy
 
-from scone_demo.signature import ScoNeSignature 
+from signature import ScoNeSignature 
 
 class ScoNeCoT(dspy.Module):
     def __init__(self):
