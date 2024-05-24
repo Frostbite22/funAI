@@ -14,7 +14,7 @@ from module import ScoNeCoT
 llama3 = lm = dspy.OllamaLocal(model='llama3')
 dspy.settings.configure(lm=llama3)
 
-RUN_FROM_SCRATCH = False
+RUN_FROM_SCRATCH = True
 
 all_train = load_scone("ScoNe/scone_nli/train")
 
@@ -56,7 +56,7 @@ bootstrap_optimizer = BootstrapFewShotWithRandomSearch(
 
 if RUN_FROM_SCRATCH:
     cot_fewshot = bootstrap_optimizer.compile(ScoNeCoT(), trainset=train, valset=dev)
-    cot_fewshot.save("scone_demo/compiled_cot_fewshot.json")
+    #cot_fewshot.save("scone_demo/compiled_cot_fewshot.json")
 else:
     cot_fewshot = ScoNeCoT()
     cot_fewshot.load("scone_demo/compiled_cot_fewshot.json")
