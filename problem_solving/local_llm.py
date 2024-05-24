@@ -6,6 +6,9 @@ from dspy.evaluate import Evaluate
 from code_gen_metric import metric
 from module import ProblemSolvingModule
 
+from dspy.teleprompt import BootstrapFewShotWithRandomSearch
+
+
 llama3 = lm = dspy.OllamaLocal(model='llama3')
 dspy.configure(lm=llama3)
 
@@ -20,3 +23,20 @@ pot_zeroshot = ProblemSolvingModule()
 evaluator = Evaluate(devset=devset, num_threads=1, display_progress=True, display_table=0)
 
 print(evaluator(pot_zeroshot, metric=metric))
+
+bootstrap_optimizer = BootstrapFewShotWithRandomSearch(
+    max_bootstrapped_demos=8,
+    max_labeled_demos=8,
+    num_candidate_programs=5,
+    num_threads=8,
+    metric=metric,
+    teacher_settings=dict(lm=llama3))
+
+pot_fewshot = bootstrap_optimizer.compile(pot_zeroshot, trainset=trainset, valset=devset)
+
+print(evaluator(pot_fewshot, metric=metric))
+
+print(llama3.inspect_history(n=1))
+
+
+
