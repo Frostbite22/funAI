@@ -1,0 +1,22 @@
+{
+  "generate_pseudocode": {
+    "lm": null,
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature_instructions": "generate code for a given problem statement.",
+    "signature_prefix": "Pseudocode:",
+    "extended_signature_instructions": "generate code for a given problem statement.",
+    "extended_signature_prefix": "Pseudocode:"
+  },
+  "generate_code": {
+    "lm": null,
+    "traces": [],
+    "train": [],
+    "demos": [],
+    "signature_instructions": "generate code for a given problem statement.",
+    "signature_prefix": "Code:",
+    "extended_signature_instructions": "generate code for a given problem statement.",
+    "extended_signature_prefix": "Code:"
+  }
+}

@@ -22,17 +22,19 @@ pot_zeroshot = ProblemSolvingModule()
 
 evaluator = Evaluate(devset=devset, num_threads=1, display_progress=True, display_table=0)
 
-print(evaluator(pot_zeroshot, metric=metric))
+# print(evaluator(pot_zeroshot, metric=metric))
 
 bootstrap_optimizer = BootstrapFewShotWithRandomSearch(
     max_bootstrapped_demos=8,
     max_labeled_demos=8,
-    num_candidate_programs=5,
-    num_threads=8,
+    num_candidate_programs=1,
+    num_threads=4,
     metric=metric,
     teacher_settings=dict(lm=llama3))
 
 pot_fewshot = bootstrap_optimizer.compile(pot_zeroshot, trainset=trainset, valset=devset)
+
+pot_fewshot.save("problem_solving/compiled_pot_fewshot.json")
 
 print(evaluator(pot_fewshot, metric=metric))
 
