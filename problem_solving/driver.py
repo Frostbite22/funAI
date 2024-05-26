@@ -21,7 +21,7 @@ pred = pot_zeroshot(problem=problem)
 print(f"problem: {problem}","\n")
 print(f"Predicted pseudocode : {pred.psdcd.pseudocode}","\n")
 print("##############################################")
-print(f"Predicted code: {pred.generated_code.code}","\n")
+print(f"Predicted code: {pred.generated_code.refined_code}","\n")
 
 end = time.time()
 print("Time taken:",end-start)
