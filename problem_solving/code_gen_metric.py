@@ -17,10 +17,10 @@ def metric(example,pred,trace=None):
     print("Correct code:",correct_code,"\n")
 
     with dspy.context(lm=llama3):
-        correct_assessed_algorithm = dspy.Predict(AlgorithmGenAssessSignature)(assessement_question=correct_assessed_algorithm,assessed_pseudocode=algo.refined_algorithm,correct_code=correct_code,problem=problem)
-        correct_assessed_code = dspy.Predict(CodeGenAssessSignature)(assessed_code=code.refined_code,assessement_question=correct_assessed_code,assessed_pseudocode=algo.refined_algorithm,correct_code=correct_code,problem=problem)
+        correct_assessed_algorithm = dspy.Predict(AlgorithmGenAssessSignature)(assessement_question=correct_assessed_algorithm,assessed_algorithm=algo.refined_algorithm,correct_code=correct_code,problem=problem)
+        correct_assessed_code = dspy.Predict(CodeGenAssessSignature)(assessed_code=code.refined_code,assessement_question=correct_assessed_code,correct_code=correct_code,problem=problem)
 
-    print("assessed pseudocode:",correct_assessed_algorithm,"\n")
+    print("assessed algorithm:",correct_assessed_algorithm,"\n")
     print("assessed code:",correct_assessed_code,"\n")
     print("##############################################")
 
