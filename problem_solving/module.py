@@ -3,7 +3,7 @@ import dspy
 from code_gen_sig import CodeGenSignature
 from refined_code_gen_sig import RefinedCodeGenSignature
 from algorithm_gen_sig import AlgorithmGenSignature
-from refined_algoritm_sig import RefinedAlgorithmSignature
+from refined_algorithm_sig import RefinedAlgorithmSignature
 
 class ProblemSolvingModule(dspy.Module):
     def __init__(self):

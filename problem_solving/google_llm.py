@@ -19,7 +19,6 @@ vertex_ai = GoogleVertexAI(
     project="gen-lang-client-0770111825",
     location="us-central1",
     credentials=credentials
-
 )
 
 

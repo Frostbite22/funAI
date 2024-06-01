@@ -9,7 +9,7 @@ import os
 
 from dspy.teleprompt import BootstrapFewShotWithRandomSearch
 
-llama3 = dspy.GROQ(model='mixtral-8x7b-32768', api_key=os.environ.get("GROQ_API_KEY"))
+llama3 = dspy.GROQ(model='gemma-7b-it', api_key=os.environ.get("GROQ_API_KEY"))
 dspy.settings.configure(lm=llama3)
 
 dataset = PrbSolvDataset('problem_solving/dataset.xlsx')
@@ -19,7 +19,7 @@ devset = [x.with_inputs('problem') for x in dataset.dev]
 pot_zeroshot = ProblemSolvingModule()
 
 ### one shot testing 
-pred = pot_zeroshot("problem statement :I want to insert a node in a binary search tree. \n Can you generate an algorithm for the given problem statement ?")
+pred = pot_zeroshot("problem statement :I want create a binary tree. \n Can you generate an algorithm for the given problem statement ?")
 print(pred)
 print(f"Refined algorithm : {pred.algo.refined_algorithm}","\n")
 print("##############################################")
